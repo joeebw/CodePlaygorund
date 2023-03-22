@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Editor from './Editor';
 
+const storage =  localStorage.getItem('bodyVariables') ? JSON.parse(localStorage.getItem('bodyVariables')) : null;
 
 function App() {
-  const [html, setHtml] = useState('');
-  const [css, setCss] = useState('');
-  const [js, setJs] = useState('');
+  const [html, setHtml] = useState(() => storage.html ? storage.html : '')
+  const [css, setCss] = useState(() => storage.css ? storage.css : '')
+  const [js, setJs] = useState(() => storage.js ? storage.js : '')
+
 
   const srcDoc = `
     <html>
@@ -15,6 +17,14 @@ function App() {
       <script>${js}</script>
     </html>
   `
+
+  useEffect(() => {
+    localStorage.setItem('bodyVariables', JSON.stringify({
+      html: html,
+      css: css,
+      js: js 
+    }))
+  },[html,css,js])
 
   return (
     <>    
