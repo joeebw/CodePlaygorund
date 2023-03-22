@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/CodePlaygorund/static/css/main.c21c752d.css",
-    "main.js": "/CodePlaygorund/static/js/main.74f48eee.js",
+    "main.js": "/CodePlaygorund/static/js/main.6dbbfedd.js",
     "index.html": "/CodePlaygorund/index.html",
     "main.c21c752d.css.map": "/CodePlaygorund/static/css/main.c21c752d.css.map",
-    "main.74f48eee.js.map": "/CodePlaygorund/static/js/main.74f48eee.js.map"
+    "main.6dbbfedd.js.map": "/CodePlaygorund/static/js/main.6dbbfedd.js.map"
   },
   "entrypoints": [
     "static/css/main.c21c752d.css",
-    "static/js/main.74f48eee.js"
+    "static/js/main.6dbbfedd.js"
   ]
 }
