@@ -36,6 +36,7 @@ function Editor(props) {
           lineWrapping: true,
           lint: true,
           theme: 'material',
+          lineNumbers:true,
           mode: language
         }}
       />

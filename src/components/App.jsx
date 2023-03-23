@@ -5,33 +5,55 @@ import Editor from './Editor';
 const storage =  localStorage.getItem('bodyVariables') ? JSON.parse(localStorage.getItem('bodyVariables')) : null;
 
 function App() {
-  const [html, setHtml] = useState(() => storage.html ? storage.html : '')
-  const [css, setCss] = useState(() => storage.css ? storage.css : '')
-  const [js, setJs] = useState(() => storage.js ? storage.js : '')
-
-
-  const srcDoc = `
-    <html>
-      <body>${html}</body>
-      <style>${css}</style>
-      <script>${js}</script>
-    </html>
-  `
+  const [html, setHtml] = useState(() => storage ? storage.html : '')
+  const [css, setCss] = useState(() => storage ? storage.css : '')
+  const [js, setJs] = useState(() => storage ? storage.js : '')
+  const [srcDoc, setSrcDoc] = useState('')   
 
   useEffect(() => {
     localStorage.setItem('bodyVariables', JSON.stringify({
       html: html,
       css: css,
       js: js 
-    }))
-  },[html,css,js])
+    })
+    )
+    const timeout = setTimeout(() => {
+      setSrcDoc(
+        `<html>
+          <body>${html}</body>
+          <style>${css}</style>
+          <script>${js}</script>
+        </html>` 
+      )
+      
+    }, 250) 
+
+    return () => clearTimeout(timeout);
+  }, [html,css,js])
+
+  // useEffect(() => {
+    
+  // },[html,css,js])
 
   return (
     <>    
       <div className='pane top-pane'>
-        <Editor language='xml' displayName='HTML' value={html} onChange={setHtml}/>
-        <Editor language='css' displayName='CSS' value={css} onChange={setCss} />
-        <Editor language='javascript' displayName='JS' value={js} onChange={setJs} />
+        <Editor 
+          language='xml' 
+          displayName='HTML' 
+          value={html} 
+          onChange={setHtml}
+        />
+        <Editor 
+        language='css' displayName='CSS' 
+        value={css} 
+        onChange={setCss} />
+        <Editor 
+          language='javascript' 
+          displayName='JS' 
+          value={js} 
+          onChange={setJs} 
+        />
       </div>
       <div className='pane'>
         <iframe 
